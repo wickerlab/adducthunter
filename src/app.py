@@ -1,5 +1,5 @@
 import os
-from flask import Flask, flash, request, render_template, send_file 
+from flask import Flask, flash, request, render_template, send_file, send_from_directory
 # from werkzeug.utils import secure_filename
 import config
 from binding_site_search import search
@@ -58,6 +58,7 @@ def upload():
         min_dist_between_peaks = request.form.get('min_dist_between_peaks')
         calibrate = request.form.get('calibrate')
         manual_calibration = request.form.get('manual_calibration_amount')
+        manual_calibration = manual_calibration if manual_calibration != '' else 0.
         only_best = 'off'
         return_all_peaks = request.form.get('return_all_peaks')
         isotope_pattern_method = request.form.get('isotope_pattern_method')
@@ -92,13 +93,25 @@ def upload():
 def download_uploaded_file(filename, request, file_id):
     request.files[file_id].save(os.path.join(upload_path, filename))
 
+@app.route('/example_bound_spectrum', methods=['GET', 'POST'])
+def download_example_bound_spectrum():
+    return send_file(os.path.join(path, default_path, 'bound_spectrum.xlsx'), as_attachment=True)
+
+@app.route('/example_compounds', methods=['GET', 'POST'])
+def download_example_compounds():
+    return send_file(os.path.join(path, default_path, 'compounds.xlsx'), as_attachment=True)
+
+@app.route('/example_adducts', methods=['GET', 'POST'])
+def download_example_standard_adducts():
+    return send_file(os.path.join(path, default_path, 'adducts.xlsx'), as_attachment=True)
+
 @app.route('/download', methods=['GET', 'POST'])
 def download(): 
     # Appending app path to upload folder path within app root folder
     outputs = os.path.join(path, download_path)
     print(outputs)
     # Returning file from appended path
-    return send_file(os.path.join(outputs, 'BindingSites.csv'), as_attachment=True) ### NEED TO USE INCOGNITO ###
+    return send_file(os.path.join(outputs, 'BindingSites.csv'), as_attachment=True)
 
 @app.after_request
 def cache_control(response):
@@ -135,5 +148,7 @@ def check_uploaded_files(bound, compound, analysis_complete):
     return default, data_dir
 
 if __name__ == "__main__":
-    # app.run(debug=True)
-    app.run()
+    app.run(debug=True)
+    # app.run()
+    # from waitress import serve
+    # serve(app, port=8080)

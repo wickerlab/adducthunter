@@ -46,7 +46,7 @@ def search(bound_file_path, compounds_file_path, adducts_file_path, tolerance=co
         plot_peaks(bound_df, peaks_idx, keep)
 
     binding_dicts = feasible_set_df(compounds, peaks, float(tolerance), multi_protein, \
-        int(min_primaries), int(max_primaries), int(max_adducts), int(valence)) # feasible set of integer combinations
+        int(min_primaries), int(max_primaries), int(max_adducts), int(valence) - 1) # feasible set of integer combinations
 
     if return_peaks:
         return interpolate.interp1d(bound_df['m/z'].to_numpy(), bound_df['normalised_intensity'].to_numpy(), kind='linear'), peaks, list(binding_dicts.keys())
@@ -80,12 +80,12 @@ def search(bound_file_path, compounds_file_path, adducts_file_path, tolerance=co
 
 if __name__ == "__main__":
 
-    # compounds = "Data/Compound Constraints/Compounds_CisOxTrans_latest.xlsx"
+    compounds = "Data/Compound Constraints/Compounds_CisOxTrans_latest.xlsx"
     adducts = "Data/Compound Constraints/Standard_Adducts.xlsx"
-    # bound = "Data/Deconvoluted Spectra/uc_medres_precal.xlsx"
+    bound = "Data/Deconvoluted Spectra/uc_medres_precal.xlsx"
 
-    bound = r"Data\Input Data\RAPTA-C-20220421T034334Z-001\RAPTA-C\bound_spectrum_mb_rapc_precal.xlsx"
-    compounds = r"Data\Input Data\RAPTA-C-20220421T034334Z-001\RAPTA-C\compounds_mb_rapc.xlsx"
+    # bound = r"Data\Input Data\RAPTA-C-20220421T034334Z-001\RAPTA-C\bound_spectrum_mb_rapc_precal.xlsx"
+    # compounds = r"Data\Input Data\RAPTA-C-20220421T034334Z-001\RAPTA-C\compounds_mb_rapc.xlsx"
 
     # plt.rcParams["figure.figsize"] = (18,3)
     binding_sites = search(bound, compounds, adducts)
