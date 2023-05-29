@@ -10,6 +10,23 @@
 	 
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">AdductHunter</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	<ul class="navbar-nav mr-auto">
+	  <li class="nav-item active">
+            <a class="nav-link" href="https://adducthunter.wickerlab.org">Home <span class="sr-only">(current)</span></a>
+	  </li>
+	  <li class="nav-item">
+            <a class="nav-link" href="https://wickerlab.org/project/adducthunter">About</a>
+	  </li>
+      </div>
+    </nav>
+
     <h1>Protein Adduct Stoichiometry Prediction</h1>
 
 	<!-- Upload functionality -->
@@ -58,7 +75,7 @@
       </select>
       <br> </br>
 			<button type="submit"
-				class="btn btn-primary btn-block">Submit</button>
+				class="btn btn-primary btn-block btn-dark">Submit</button>
 		</form>
 	</div>
 	
@@ -82,6 +99,63 @@
   {% block content %}
   {% endblock %}
 	
-    
+
+
+  <footer class="bg-dark text-center text-white">
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <section class="mb-4">
+      <!-- Hartingerlab -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+         >
+	<img
+          src="img/hartingerlab.jpg"
+          class="w-100"
+          />
+	<i class="fab fa-facebook-f"></i
+      >https://hartinger.wordpress.fos.auckland.ac.nz/</a>
+
+      <!-- Wickerlab -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+         >
+	<img
+          src="img/wickerlab.webp"
+          class="w-100"
+          />
+	<i class="fab fa-facebook-f"></i
+      >https://wickerlab.org</a>
+
+      <!-- ML Group -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+         >
+	<img
+          src="img/ml-auckland.png"
+          class="w-100"
+          />
+	<i class="fab fa-facebook-f"></i
+      >https://ml.auckland.ac.nz/</a>
+
+
+      <!-- UoA -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+         >
+	<img
+          src="img/uoa.png"
+          class="w-100"
+          />
+	<i class="fab fa-facebook-f"></i
+      >https://auckland.ac.nz/</a>
+    </section>
+    <!-- Section: links -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2023 Copyright:
+    <a class="text-white" href="https://wickerlab.org/">Wickerlab</a>
+  </div>
+  <!-- Copyright -->
+</footer>
   </body>
 </html>
